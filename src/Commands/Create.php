@@ -8,8 +8,8 @@ use Symfony\Component\Filesystem\Filesystem;
 
 class Create extends Command
 {
-    public $config;
 
+    public $config;
     public $input;
 
     public function __construct($config)
@@ -97,16 +97,19 @@ class Create extends Command
 
         if (!array_key_exists($arg[0], $this->config)) {
             $output->writeln('<error>The key command does not exits. Check your config file.</error>');
+
             return;
         }
 
         if (!$fs->exists(dirname($destination))) {
             $output->writeln("<error>The destination folder does not exist already exist ($destination).</error>");
+
             return;
         }
 
         if ($fs->exists($destination)) {
             $output->writeln("<error>Unable to create the destination file. File already exist ($destination).</error>");
+
             return;
         }
 

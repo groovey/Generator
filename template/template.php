@@ -3,4 +3,5 @@
 class {{class}} extends Controller {
 
 	// {{data}}
+
 }

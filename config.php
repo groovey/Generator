@@ -9,7 +9,7 @@ return [
         'destination' => './output/ARG1.php',
         'replace' => [
             'class' => 'ARG1|ucfirst',
-            'data'  => 'Your data contents'
+            'data'  => 'Code goes here.'
         ]
     ]
 ];
