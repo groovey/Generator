@@ -56,7 +56,11 @@ exit($status);
 
 `Controller` is the key argument. So will call this like `$ groovey generator:create Controller Sample`.
 
-`Source` is your template. `Destination` is your destination file output. `Replace` is where you replace the content of your templates.
+`Source` is your template.
+
+`Destination` is your destination file output.
+
+`Replace` is where you replace the content of your templates.
 
 ```php
 <?php
