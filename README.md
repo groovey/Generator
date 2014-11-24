@@ -73,10 +73,9 @@ return [
 ];
 ```
 
-<<<<<<< HEAD
 ## Example Template
 
-Anything that are enclosed by `{{}}` will be replaced. And so with constant values such as `ARG1`, `ARG2`, etc.
+Anything that are enclosed by `{{}}` will be replaced. And so with the constant values such as `ARG1`, `ARG2`, etc.
 
 File is under `template folder` as specified in the config file.
 
@@ -90,9 +89,6 @@ class {{class}} extends Controller {
 }
 ```
 
-
-=======
->>>>>>> 6e417ed81473fd415643fa4802aefacaaca94c1a
 This is where you can customize your templates.
 
 ### Things To Remember
