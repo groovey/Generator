@@ -54,6 +54,10 @@ exit($status);
 
 ## The Config File
 
+`Controller` is the key argument. So will call this like `$ groovey generator:create Controller Sample`.
+
+`Source` is your template. `Destination` is your destination file output. `Replace` is where you replace the content of your templates.
+
 ```php
 <?php
 
@@ -75,7 +79,7 @@ return [
 
 ## Example Template
 
-Anything that are enclosed by `{{}}` will be replaced. And so with the constant values such as `ARG1`, `ARG2`, etc.
+Anything that are enclosed by `{{variable}}` will be replaced. And so with the constant values such as `ARG1`, `ARG2`, etc.
 
 File is under `template folder` as specified in the config file.
 
@@ -95,16 +99,10 @@ This is where you can customize your templates.
 
     $ groovey generator:create Controller User
 
-`ARG0` - The 0 argument. Value is `Controller`.
-
-
-`ARG1` - The 1st argument. Value is `User`.
-
-
-`ARG2` - The 2nd argument. Value is `Empty`.
-
-
-`ARGN` - The N'th argument.
+* `ARG0` - The 0 argument. Value is `Controller`.
+* `ARG1` - The 1st argument. Value is `User`.
+* `ARG2` - The 2nd argument. Value is `Empty`.
+* `ARGN` - The N'th argument.
 
 
 ## Like Us.
