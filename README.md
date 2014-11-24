@@ -48,3 +48,46 @@ $status = $app->run();
 
 exit($status);
 ```
+
+
+## The Config File
+
+```php
+<?php
+
+$dir = __DIR__ . '/template';
+
+return [
+    'Controller' => [
+        'source' => $dir . '/template.php',
+        'destination' => './output/ARG1.php',
+        'replace' => [
+            'class' => 'ARG1|ucfirst',
+            'data'  => 'Code goes here.'
+        ]
+    ]
+
+    // Etc.
+];
+```
+
+This is where you can customize your templates.
+
+### Things To Remember
+
+    $ groovey generator:create Controller User
+
+`ARG0` - The 0 argument. Value is `Controller`.
+`ARG1` - The 1st argument. Value is `User`.
+`ARG2` - The 2nd argument. Value is `Empty`.
+
+`ARGN` - The N'th argument.
+
+
+## Like Us.
+
+Give a `star` to show your support and love for the project.
+
+## Contribution
+
+Fork `Groovey Seeder` and send us some issues.
