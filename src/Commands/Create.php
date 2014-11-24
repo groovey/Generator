@@ -89,9 +89,9 @@ class Create extends Command
         $this->input = $input;
         $arg         = $input->getArgument('arg');
         $fs          = new Filesystem();
-        $config      = $this->config[$arg[0]];
+        $config      = @$this->config[$arg[0]];
         $pathinfo    = pathinfo($config['source']);
-        $loader      = new \Twig_Loader_Filesystem($pathinfo['dirname']);
+        $loader      = new \Twig_Loader_Filesystem(@$pathinfo['dirname']);
         $twig        = new \Twig_Environment($loader);
         $destination = $this->replaceArguments($config['destination'], $input);
 
@@ -102,7 +102,7 @@ class Create extends Command
         }
 
         if (!$fs->exists(dirname($destination))) {
-            $output->writeln("<error>The destination folder does not exist already exist ($destination).</error>");
+            $output->writeln("<error>The destination folder does not exist (" . dirname($destination) . ").</error>");
 
             return;
         }

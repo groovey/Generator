@@ -13,7 +13,7 @@ class Generator
     {
         return [
             new Commands\Create($this->config),
-            // new Commands\About()
+            new Commands\About()
         ];
     }
 

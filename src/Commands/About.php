@@ -1,4 +1,4 @@
-<?php namespace Groovey\Seeder\Commands;
+<?php namespace Groovey\Generator\Commands;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -14,7 +14,7 @@ class About extends Command
     protected function configure()
     {
         $this
-            ->setName('seed:about')
+            ->setName('generator:about')
             ->setDescription('Shows credits to the author.')
         ;
     }
@@ -31,8 +31,8 @@ $about = <<<ABOUT
  \____/_/   \____/\____/|___/\___/\__, /
                                  /____/
  </comment>
- Project Name: Groovey Seeder
- Git: https://github.com/groovey/seeder
+ Project Name: Groovey Generator
+ Git: https://github.com/groovey/generator
  Author: Harold Kim Cantil <pokoot@gmail.com>
 
  Crafted with love.
