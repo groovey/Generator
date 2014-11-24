@@ -24,6 +24,8 @@ Then run `composer.phar` update.
 
 ## The Groovey File
 
+On your project root folder. Create a file called `groovey`. Or this could be any project name like `awesome`. Then  paste the code below.
+
 ```php
 #!/usr/bin/env php
 <?php
@@ -48,3 +50,63 @@ $status = $app->run();
 
 exit($status);
 ```
+
+
+## The Config File
+
+```php
+<?php
+
+$dir = __DIR__ . '/template';
+
+return [
+    'Controller' => [
+        'source' => $dir . '/template.php',
+        'destination' => './output/ARG1.php',
+        'replace' => [
+            'class' => 'ARG1|ucfirst',
+            'data'  => 'Code goes here.'
+        ]
+    ]
+
+    // Etc.
+];
+```
+
+## Example Template
+
+Anything that are enclosed by `{{}}` will be replaced. And so with constant values such as `ARG1`, `ARG2`, etc.
+
+File is under `template folder` as specified in the config file.
+
+```php
+<?php
+
+class {{class}} extends Controller {
+
+    // {{data}}
+
+}
+```
+
+
+This is where you can customize your templates.
+
+### Things To Remember
+
+    $ groovey generator:create Controller User
+
+`ARG0` - The 0 argument. Value is `Controller`.
+`ARG1` - The 1st argument. Value is `User`.
+`ARG2` - The 2nd argument. Value is `Empty`.
+
+`ARGN` - The N'th argument.
+
+
+## Like Us.
+
+Give a `star` to show your support and love for the project.
+
+## Contribution
+
+Fork `Groovey Seeder` and send us some issues.
