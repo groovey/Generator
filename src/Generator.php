@@ -4,8 +4,15 @@ class Generator
 {
     public $config;
 
-    public function __construct($config)
+    public function __construct()
     {
+    }
+
+    public function load($config)
+    {
+
+        $config = include $config;
+
         $this->config = $config;
     }
 

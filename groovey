@@ -7,10 +7,11 @@ use Symfony\Component\Console\Application;
 use Groovey\Generator\Generator;
 
 include __DIR__ . '/vendor/autoload.php';
-$config = include __DIR__ . '/config.php';
 
-$generator = new Generator($config);
+$generator = new Generator;
 $app       = new Application;
+
+$generator->load('config.php');
 
 $app->addCommands(
         $generator->getCommands()
