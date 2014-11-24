@@ -1,0 +1,21 @@
+#!/usr/bin/env php
+<?php
+
+set_time_limit(0);
+
+include __DIR__ . '/vendor/autoload.php';
+$config = include __DIR__ . '/config.php';
+
+use Symfony\Component\Console\Application;
+use Groovey\Generator\Generator;
+
+$generator = new Generator($config);
+$app       = new Application;
+
+$app->addCommands(
+        $generator->getCommands()
+	);
+
+$status = $app->run();
+
+exit($status);
