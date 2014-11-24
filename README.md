@@ -1,7 +1,7 @@
 Generator
 =========
 
-An agnostic generic template generator that is easy to use. Simplifies your workflow on creating your templates. A highly customizable generator.
+An agnostic generic template generator that is easy to use. Simplifies your workflow on creation of templates. A highly customizable template generator.
 
 ## Usage
 
@@ -54,13 +54,15 @@ exit($status);
 
 ## The Config File
 
-`Controller` is the key argument. So will call this like `$ groovey generator:create Controller Sample`.
+`Controller` is the key argument. To run the command `$ groovey generator:create Controller Sample`.
 
 `Source` is your template.
 
 `Destination` is your destination file output.
 
-`Replace` is where you replace the content of your templates.
+`Replace` is where you replace the templates with your contents.
+
+Argument constants such as `ARG1`, `ARG2`, etc will be replace depending on your arguments.
 
 ```php
 <?php
@@ -83,7 +85,7 @@ return [
 
 ## Example Template
 
-Anything that are enclosed by `{{variable}}` will be replaced. And so with the constant values such as `ARG1`, `ARG2`, etc.
+Anything that are enclosed by `{{variable}}` will be replaced.
 
 File is under `template folder` as specified in the config file.
 
@@ -96,8 +98,6 @@ class {{class}} extends Controller {
 
 }
 ```
-
-This is where you can customize your templates.
 
 ### Things To Remember
 
