@@ -85,8 +85,6 @@ return [
 
 Argument constants such as `ARG1`, `ARG2`, etc will be replace depending on your arguments.
 
-    $ groovey generator:create Controller Sample
-
 ## Step 4 - Templates
 
 Create the template file as defined on your `config.php` file.
