@@ -1,5 +1,8 @@
 <?php namespace Groovey\Generator;
 
+use Symfony\Component\Console\Output\ConsoleOutput;
+use Symfony\Component\Filesystem\Filesystem;
+
 class Generator
 {
     public $config;
@@ -10,6 +13,14 @@ class Generator
 
     public function load($config)
     {
+
+        $fs     = new Filesystem();
+        $output = new ConsoleOutput();
+
+        if (!$fs->exists($config)) {
+            $output->writeln("<error>Can't find config file ($config).</error>");
+            exit();
+        }
 
         $config = include $config;
 

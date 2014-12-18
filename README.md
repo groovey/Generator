@@ -8,7 +8,7 @@ An agnostic generic template generator that is easy to use. Simplifies your work
     $ groovey generator:create Controller User
 
 
-## Installation
+## Step 1 - Composer Installation
 
 Install using composer. To learn more about composer, visit: https://getcomposer.org/
 
@@ -22,9 +22,9 @@ Install using composer. To learn more about composer, visit: https://getcomposer
 
 Then run `composer.phar` update.
 
-## The Groovey File
+## Step 2 - The Groovey File
 
-On your project root folder. Create a file called `groovey`. Or this could be any project name like `awesome`. Then  paste the code below.
+On your project root folder, create a file `groovey`.
 
 ```php
 #!/usr/bin/env php
@@ -51,18 +51,10 @@ $status = $app->run();
 exit($status);
 ```
 
+## Step 3 - The Config File
 
-## The Config File
+Create `config.php` on the same level as the `groovey` file which is in your root folder.
 
-`Controller` is the key argument. To run the command `$ groovey generator:create Controller Sample`.
-
-`Source` is your template.
-
-`Destination` is your destination file output.
-
-`Replace` is where you replace the templates with your contents.
-
-Argument constants such as `ARG1`, `ARG2`, etc will be replace depending on your arguments.
 
 ```php
 <?php
@@ -71,7 +63,7 @@ $dir = __DIR__ . '/template';
 
 return [
     'Controller' => [
-        'source' => $dir . '/template.php',
+        'source' => $dir . '/controller.php',
         'destination' => './output/ARG1.php',
         'replace' => [
             'class' => 'ARG1|ucfirst',
@@ -83,11 +75,23 @@ return [
 ];
 ```
 
-## Example Template
+`Controller` is the key argument.
+
+`Source` is your template.
+
+`Destination` is your destination file output.
+
+`Replace` is where you replace the templates with your contents.
+
+Argument constants such as `ARG1`, `ARG2`, etc will be replace depending on your arguments.
+
+    $ groovey generator:create Controller Sample
+
+## Step 4 - Templates
+
+Create the template file as defined on your `config.php` file.
 
 Anything that are enclosed by `{{variable}}` will be replaced.
-
-File is under `template folder` as specified in the config file.
 
 ```php
 <?php
@@ -98,8 +102,12 @@ class {{class}} extends Controller {
 
 }
 ```
+## Step 5 - Run
 
-### Things To Remember
+    $ groovey generator:create Controller Sample
+
+
+## Things To Remember
 
     $ groovey generator:create Controller User
 
