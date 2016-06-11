@@ -1,4 +1,6 @@
-<?php namespace Groovey\Generator;
+<?php
+
+namespace Groovey\Generator;
 
 use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Filesystem\Filesystem;
@@ -13,7 +15,6 @@ class Generator
 
     public function load($config)
     {
-
         $fs     = new Filesystem();
         $output = new ConsoleOutput();
 
@@ -31,8 +32,7 @@ class Generator
     {
         return [
             new Commands\Create($this->config),
-            new Commands\About()
+            new Commands\About(),
         ];
     }
-
 }

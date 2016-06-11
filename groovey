@@ -6,16 +6,16 @@ set_time_limit(0);
 use Symfony\Component\Console\Application;
 use Groovey\Generator\Generator;
 
-include __DIR__ . '/vendor/autoload.php';
+include __DIR__.'/vendor/autoload.php';
 
-$generator = new Generator;
-$app       = new Application;
+$generator = new Generator();
+$app       = new Application();
 
 $generator->load('config.php');
 
 $app->addCommands(
         $generator->getCommands()
-	);
+    );
 
 $status = $app->run();
 

@@ -1,4 +1,6 @@
-<?php namespace Groovey\Generator\Commands;
+<?php
+
+namespace Groovey\Generator\Commands;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -8,7 +10,6 @@ use Symfony\Component\Filesystem\Filesystem;
 
 class Create extends Command
 {
-
     public $config;
     public $input;
 
@@ -38,7 +39,7 @@ class Create extends Command
         $cnt = 0;
         foreach ($arg as $value) {
             $text = str_replace("ARG{$cnt}", $arg[$cnt], $text);
-            $cnt++;
+            ++$cnt;
         }
 
         return $text;
@@ -46,11 +47,9 @@ class Create extends Command
 
     public function replaceContent($data)
     {
-
         $temp = [];
         foreach ($data as $key => $value) {
-
-            if (strpos($value, '|' )) {
+            if (strpos($value, '|')) {
                 $temp[$key] = $this->processDelimeter($value);
             } else {
                 $temp[$key] = $value;
@@ -64,13 +63,9 @@ class Create extends Command
     {
         $text = '';
         foreach (explode('|', $data) as $value) {
-
-            if (substr($value, 0 , 3) == 'ARG') {
-
+            if (substr($value, 0, 3) == 'ARG') {
                 $text = $this->replaceArguments($value);
-
             } else {
-
                 switch ($value) {
                     case 'strtoupper':  $text = strtoupper($text);  break;
                     case 'strtolower':  $text = strtolower($text);  break;
@@ -85,7 +80,6 @@ class Create extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-
         $this->input = $input;
         $arg         = $input->getArgument('arg');
         $fs          = new Filesystem();
@@ -93,6 +87,7 @@ class Create extends Command
         $pathinfo    = pathinfo($config['source']);
         $loader      = new \Twig_Loader_Filesystem(@$pathinfo['dirname']);
         $twig        = new \Twig_Environment($loader);
+
         $destination = $this->replaceArguments($config['destination'], $input);
 
         if (!array_key_exists($arg[0], $this->config)) {
@@ -102,7 +97,7 @@ class Create extends Command
         }
 
         if (!$fs->exists(dirname($destination))) {
-            $output->writeln("<error>The destination folder does not exist (" . dirname($destination) . ").</error>");
+            $output->writeln('<error>The destination folder does not exist ('.dirname($destination).').</error>');
 
             return;
         }
@@ -118,9 +113,8 @@ class Create extends Command
             $this->replaceContent($config['replace'])
         );
 
-        file_put_contents($destination , $contents);
+        file_put_contents($destination, $contents);
 
         $output->writeln("<info>Sucessfully created template ($destination).</info>");
     }
-
 }

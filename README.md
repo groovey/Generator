@@ -35,10 +35,10 @@ set_time_limit(0);
 use Symfony\Component\Console\Application;
 use Groovey\Generator\Generator;
 
-include __DIR__ . '/vendor/autoload.php';
+include __DIR__.'/vendor/autoload.php';
 
-$generator = new Generator;
-$app       = new Application;
+$generator = new Generator();
+$app       = new Application();
 
 $generator->load('config.php');
 
@@ -62,16 +62,15 @@ Create `config.php` on the same level as the `groovey` file which is in your roo
 $dir = __DIR__ . '/template';
 
 return [
+
     'Controller' => [
         'source' => $dir . '/controller.php',
         'destination' => './output/ARG1.php',
         'replace' => [
-            'class' => 'ARG1|ucfirst',
-            'data'  => 'Code goes here.'
+            'class'    => 'ARG1|ucfirst',
+            'comments' => 'Code goes here.'
         ]
     ]
-
-    // Etc.
 ];
 ```
 

@@ -8,8 +8,8 @@ return [
         'source' => $dir . '/controller.php',
         'destination' => './output/ARG1.php',
         'replace' => [
-            'class' => 'ARG1|ucfirst',
-            'data'  => 'Code goes here.'
+            'class'    => 'ARG1|ucfirst',
+            'comments' => 'Code goes here.'
         ]
     ]
 ];

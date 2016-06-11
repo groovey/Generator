@@ -1,7 +1,11 @@
 <?php
 
-class {{class}} extends Controller {
+class {{class}} extends Controller
+{
 
-	// {{data}}
+    function __construct()
+    {
+        // {{comments}}
+    }
 
 }
