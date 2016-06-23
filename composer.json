@@ -10,10 +10,10 @@
         }
     ],
     "require": {
-        "symfony/console": "~3.0",
-        "symfony/config" : "~3.0",
-        "symfony/finder" : "~3.0",
-        "twig/twig" : "~1.24"
+        "symfony/console": "*",
+        "symfony/config" : "*",
+        "symfony/finder" : "*",
+        "twig/twig" : "*"
     },
     "require-dev": {
         "phpunit/phpunit": "4.0.*",
