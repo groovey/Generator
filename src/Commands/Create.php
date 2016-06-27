@@ -22,7 +22,7 @@ class Create extends Command
     protected function configure()
     {
         $this
-            ->setName('generator:create')
+            ->setName('generate:create')
             ->setDescription('Creates a predefined template.')
             ->addArgument(
                 'arg',

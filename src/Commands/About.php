@@ -16,7 +16,7 @@ class About extends Command
     protected function configure()
     {
         $this
-            ->setName('generator:about')
+            ->setName('generate:about')
             ->setDescription('Shows credits to the author.')
         ;
     }
