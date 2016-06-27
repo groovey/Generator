@@ -13,10 +13,10 @@ class Create extends Command
     public $config;
     public $input;
 
-    public function __construct($config)
+    public function __construct($app)
     {
         parent::__construct();
-        $this->config = $config;
+        $this->app = $app;
     }
 
     protected function configure()
@@ -81,16 +81,17 @@ class Create extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $this->input = $input;
+        $app         = $this->app;
         $arg         = $input->getArgument('arg');
         $fs          = new Filesystem();
-        $config      = @$this->config[$arg[0]];
+        $config      = @$app['generator.config'][$arg[0]];
         $pathinfo    = pathinfo($config['source']);
         $loader      = new \Twig_Loader_Filesystem(@$pathinfo['dirname']);
         $twig        = new \Twig_Environment($loader);
 
         $destination = $this->replaceArguments($config['destination'], $input);
 
-        if (!array_key_exists($arg[0], $this->config)) {
+        if (!array_key_exists($arg[0], $app['generator.config'])) {
             $output->writeln('<error>The key command does not exits. Check your config file.</error>');
 
             return;
