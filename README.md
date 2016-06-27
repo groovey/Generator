@@ -12,13 +12,7 @@ An agnostic generic template generator that is easy to use. Simplifies your work
 
 Install using composer. To learn more about composer, visit: https://getcomposer.org/
 
-```json
-{
-    "require": {
-        "groovey/generator": "~1.0"
-    }
-}
-```
+    $ composer require groovey/generator
 
 Then run `composer.phar` update.
 
@@ -33,22 +27,22 @@ On your project root folder, create a file `groovey`.
 set_time_limit(0);
 
 use Symfony\Component\Console\Application;
-use Groovey\Generator\Generator;
 
 include __DIR__.'/vendor/autoload.php';
 
-$generator = new Generator();
-$app       = new Application();
+$app = new Application();
 
-$generator->load('config.php');
+$container['generator.config'] = include 'config.php';
 
-$app->addCommands(
-        $generator->getCommands()
-    );
+$app->addCommands([
+        new Groovey\Generator\Commands\About(),
+        new Groovey\Generator\Commands\Create($container),
+    ]);
 
 $status = $app->run();
 
 exit($status);
+
 ```
 
 ## Step 3 - The Config File
@@ -59,19 +53,20 @@ Create `config.php` on the same level as the `groovey` file which is in your roo
 ```php
 <?php
 
-$dir = __DIR__ . '/template';
+$dir = __DIR__.'/templates';
 
 return [
 
     'Controller' => [
-        'source' => $dir . '/controller.php',
+        'source' => $dir.'/controller.php',
         'destination' => './output/ARG1.php',
         'replace' => [
             'class'    => 'ARG1|ucfirst',
-            'comments' => 'Code goes here.'
-        ]
-    ]
+            'comments' => 'Code goes here.',
+        ],
+    ],
 ];
+
 ```
 
 `Controller` is the key argument.
@@ -93,9 +88,13 @@ Anything that are enclosed by `{{variable}}` will be replaced.
 ```php
 <?php
 
-class {{class}} extends Controller {
+class {{class}} extends Controller
+{
 
-    // {{data}}
+    function __construct()
+    {
+        // {{comments}}
+    }
 
 }
 ```
@@ -120,4 +119,4 @@ Give a `star` to show your support and love for the project.
 
 ## Contribution
 
-Fork `Groovey Seeder` and send us some issues.
+Fork `Groovey Generator` and send us some issues.
