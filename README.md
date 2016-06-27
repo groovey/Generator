@@ -100,12 +100,12 @@ class {{class}} extends Controller
 ```
 ## Step 5 - Run
 
-    $ groovey generator:create Controller Sample
+    $ groovey generate:create Controller Sample
 
 
 ## Things To Remember
 
-    $ groovey generator:create Controller User
+    $ groovey generate:create Controller User
 
 * `ARG0` - The 0 argument. Value is `Controller`.
 * `ARG1` - The 1st argument. Value is `User`.
