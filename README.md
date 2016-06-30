@@ -1,22 +1,17 @@
-Generator
-=========
+# Generator
 
-An agnostic generic template generator that is easy to use. Simplifies your workflow on creation of templates. A highly customizable template generator.
+A generic template generator
 
 ## Usage
 
     $ groovey generator:create Controller User
 
 
-## Step 1 - Composer Installation
-
-Install using composer. To learn more about composer, visit: https://getcomposer.org/
+## Installation
 
     $ composer require groovey/generator
 
-Then run `composer.phar` update.
-
-## Step 2 - The Groovey File
+## Setup
 
 On your project root folder, create a file `groovey`.
 
@@ -45,9 +40,9 @@ exit($status);
 
 ```
 
-## Step 3 - The Config File
+## Config File
 
-Create `config.php` on the same level as the `groovey` file which is in your root folder.
+Create `config.php` in your root folder.
 
 
 ```php
@@ -79,7 +74,7 @@ return [
 
 Argument constants such as `ARG1`, `ARG2`, etc will be replace depending on your arguments.
 
-## Step 4 - Templates
+## Templates
 
 Create the template file as defined on your `config.php` file.
 
@@ -103,7 +98,7 @@ class {{class}} extends Controller
     $ groovey generate:create Controller Sample
 
 
-## Things To Remember
+## Notes
 
     $ groovey generate:create Controller User
 
@@ -111,12 +106,3 @@ class {{class}} extends Controller
 * `ARG1` - The 1st argument. Value is `User`.
 * `ARG2` - The 2nd argument. Value is `Empty`.
 * `ARGN` - The N'th argument.
-
-
-## Like Us.
-
-Give a `star` to show your support and love for the project.
-
-## Contribution
-
-Fork `Groovey Generator` and send us some issues.
