@@ -93,7 +93,7 @@ class {{class}} extends Controller
 
 }
 ```
-## Step 5 - Run
+## Run
 
     $ groovey generate:create Controller Sample
 
