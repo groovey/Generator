@@ -1,6 +1,6 @@
 {
     "name": "groovey/generator",
-    "description": "A generic template generator.",
+    "description": "Groovey Generator Package.",
     "license": "MIT",
     "keywords": ["template", "generator", "agnostic", "generator", "generic"],
     "authors": [
