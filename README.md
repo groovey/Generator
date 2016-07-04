@@ -1,6 +1,6 @@
 # Generator
 
-A generic template generator
+Groovey Generator Package
 
 ## Usage
 
