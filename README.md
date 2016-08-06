@@ -2,14 +2,13 @@
 
 Groovey Generator Package
 
-## Usage
-
-    $ groovey generator:create Controller User
-
-
 ## Installation
 
     $ composer require groovey/generator
+
+## Usage
+
+    $ groovey generator:create Controller User
 
 ## Setup
 
