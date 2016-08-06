@@ -2,7 +2,7 @@
     "name": "groovey/generator",
     "description": "Groovey Generator Package.",
     "license": "MIT",
-    "keywords": ["template", "generator", "agnostic", "generator", "generic"],
+    "keywords": ["silex", "groovey"],
     "authors": [
         {
             "name": "Harold Kim Cantil",
