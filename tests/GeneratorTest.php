@@ -1,8 +1,7 @@
 <?php
 
-use Symfony\Component\Console\Application;
-use Symfony\Component\Console\Tester\CommandTester;
-use Symfony\Component\Console\Command\Command;
+use Silex\Application;
+use Groovey\Tester\Providers\TesterServiceProvider;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
 use Groovey\Generator\Commands\About;
@@ -10,18 +9,30 @@ use Groovey\Generator\Commands\Create;
 
 class GeneratorTest extends PHPUnit_Framework_TestCase
 {
-    public function testAbout()
+    public $app;
+
+    public function setUp()
     {
         $app = new Application();
-        $app->add(new About());
-        $command = $app->find('generate:about');
-        $tester = new CommandTester($command);
+        $app['debug'] = true;
 
-        $tester->execute([
-                'command' => $command->getName(),
+        $app->register(new TesterServiceProvider());
+
+        $app['tester']->add([
+                new About(),
+                new Create($app),
             ]);
 
-        $this->assertRegExp('/Groovey/', $tester->getDisplay());
+        $app['generator.config'] = include 'config.php';
+
+        $this->app = $app;
+    }
+
+    public function testAbout()
+    {
+        $app = $this->app;
+        $display = $app['tester']->command('generate:about')->execute()->display();
+        $this->assertRegExp('/Groovey/', $display);
     }
 
     public function testCreateFolder()
@@ -36,19 +47,9 @@ class GeneratorTest extends PHPUnit_Framework_TestCase
 
     public function testCreate()
     {
-        $container['generator.config'] = include 'config.php';
-
-        $app = new Application();
-        $app->add(new Create($container));
-        $command = $app->find('generate:create');
-        $tester = new CommandTester($command);
-
-        $tester->execute([
-                'command' => $command->getName(),
-                'arg'   => ['Controller', 'Users'],
-            ]);
-
-        $this->assertRegExp('/Sucessfully/', $tester->getDisplay());
+        $app = $this->app;
+        $display = $app['tester']->command('generate:create')->execute(['arg' => ['Controller', 'Users']])->display();
+        $this->assertRegExp('/Sucessfully/', $display);
     }
 
     public function testDelete()
