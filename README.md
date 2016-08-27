@@ -26,11 +26,9 @@ include __DIR__.'/vendor/autoload.php';
 
 $app = new Application();
 
-$container['generator.config'] = include 'config.php';
-
 $app->addCommands([
         new Groovey\Generator\Commands\About(),
-        new Groovey\Generator\Commands\Create($container),
+        new Groovey\Generator\Commands\Create(),
     ]);
 
 $status = $app->run();
@@ -41,18 +39,14 @@ exit($status);
 
 ## Config File
 
-Create `config.php` in your root folder.
-
+Create a file in ./config/generator.php
 
 ```php
 <?php
 
-$dir = __DIR__.'/templates';
-
 return [
-
     'Controller' => [
-        'source' => $dir.'/controller.php',
+        'source' => 'controller.php',
         'destination' => './output/ARG1.php',
         'replace' => [
             'class'    => 'ARG1|ucfirst',
@@ -75,9 +69,11 @@ Argument constants such as `ARG1`, `ARG2`, etc will be replace depending on your
 
 ## Templates
 
-Create the template file as defined on your `config.php` file.
+Create the template file as defined on your `generator.php` file.
 
 Anything that are enclosed by `{{variable}}` will be replaced.
+
+Template location will be in (./resources/generators)
 
 ```php
 <?php

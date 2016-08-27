@@ -9,11 +9,9 @@ include __DIR__.'/vendor/autoload.php';
 
 $app = new Application();
 
-$container['generator.config'] = include 'config.php';
-
 $app->addCommands([
         new Groovey\Generator\Commands\About(),
-        new Groovey\Generator\Commands\Create($container),
+        new Groovey\Generator\Commands\Create(),
     ]);
 
 $status = $app->run();

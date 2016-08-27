@@ -23,8 +23,6 @@ class GeneratorTest extends PHPUnit_Framework_TestCase
                 new Create($app),
             ]);
 
-        $app['generator.config'] = include 'config.php';
-
         $this->app = $app;
     }
 

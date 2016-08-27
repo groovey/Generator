@@ -10,13 +10,11 @@ use Symfony\Component\Filesystem\Filesystem;
 
 class Create extends Command
 {
-    public $config;
     public $input;
 
-    public function __construct($app)
+    public function __construct()
     {
         parent::__construct();
-        $this->app = $app;
     }
 
     protected function configure()
@@ -34,7 +32,8 @@ class Create extends Command
 
     public function replaceArguments($text)
     {
-        $arg = $this->input->getArgument('arg');
+        $input = $this->input;
+        $arg   = $input->getArgument('arg');
 
         $cnt = 0;
         foreach ($arg as $value) {
@@ -81,36 +80,45 @@ class Create extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $this->input = $input;
-        $app         = $this->app;
         $arg         = $input->getArgument('arg');
         $fs          = new Filesystem();
-        $config      = @$app['generator.config'][$arg[0]];
-        $pathinfo    = pathinfo($config['source']);
-        $loader      = new \Twig_Loader_Filesystem(@$pathinfo['dirname']);
+        $generators  = getcwd().'/resources/generators';
+        $loader      = new \Twig_Loader_Filesystem($generators);
         $twig        = new \Twig_Environment($loader);
+        $config      = include getcwd().'/config/generator.php';
+        $config      = element($arg[0], $config);
+        $source      = $generators.'/'.element('source', $config);
+        $destination = element('destination', $config);
+        $destination = $this->replaceArguments($destination);
 
-        $destination = $this->replaceArguments($config['destination'], $input);
+        if (!$config) {
+            $output->writeln("<error>{$arg[0]} does not exist. Please check your confile file.</error>");
 
-        if (!array_key_exists($arg[0], $app['generator.config'])) {
-            $output->writeln('<error>The key command does not exits. Check your config file.</error>');
+            return;
+        }
+
+        if (!$fs->exists($source)) {
+            $output->writeln('<error>The source file does not exist</error>');
 
             return;
         }
 
         if (!$fs->exists(dirname($destination))) {
-            $output->writeln('<error>The destination folder does not exist ('.dirname($destination).').</error>');
+            $output->writeln('<error>The destination folder does not exist</error>');
+            $output->writeln('<info>Create the destination folder at ('.dirname($destination).').</info>');
 
             return;
         }
 
         if ($fs->exists($destination)) {
-            $output->writeln("<error>Unable to create the destination file. File already exist ($destination).</error>");
+            $output->writeln('<error>Unable to create the destination file.</error>');
+            $output->writeln("<info>File already exist ($destination).</info>");
 
             return;
         }
 
         $contents = $twig->render(
-            $pathinfo['basename'],
+            basename($source),
             $this->replaceContent($config['replace'])
         );
 
