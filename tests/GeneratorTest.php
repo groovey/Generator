@@ -1,9 +1,10 @@
 <?php
 
 use Silex\Application;
-use Groovey\Tester\Providers\TesterServiceProvider;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
+use Groovey\Tester\Providers\TesterServiceProvider;
+use Groovey\Console\Providers\ConsoleServiceProvider;
 use Groovey\Generator\Commands\About;
 use Groovey\Generator\Commands\Create;
 
@@ -18,9 +19,14 @@ class GeneratorTest extends PHPUnit_Framework_TestCase
 
         $app->register(new TesterServiceProvider());
 
+        $app->register(new ConsoleServiceProvider(), [
+            'console.name'    => 'Groovey',
+            'console.version' => '1.0.0',
+        ]);
+
         $app['tester']->add([
                 new About(),
-                new Create($app),
+                new Create(),
             ]);
 
         $this->app = $app;
