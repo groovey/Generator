@@ -35,7 +35,7 @@ class Create extends Command
         $input = $this->input;
         $arg   = $input->getArgument('arg');
 
-        $cnt = 0;
+        $cnt   = 0;
         foreach ($arg as $value) {
             $text = str_replace("ARG{$cnt}", $arg[$cnt], $text);
             ++$cnt;

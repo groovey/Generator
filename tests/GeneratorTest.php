@@ -34,7 +34,7 @@ class GeneratorTest extends PHPUnit_Framework_TestCase
 
     public function testAbout()
     {
-        $app = $this->app;
+        $app     = $this->app;
         $display = $app['tester']->command('generate:about')->execute()->display();
         $this->assertRegExp('/Groovey/', $display);
     }
@@ -51,7 +51,7 @@ class GeneratorTest extends PHPUnit_Framework_TestCase
 
     public function testCreate()
     {
-        $app = $this->app;
+        $app     = $this->app;
         $display = $app['tester']->command('generate:create')->execute(['arg' => ['Controller', 'Users']])->display();
         $this->assertRegExp('/Sucessfully/', $display);
     }
