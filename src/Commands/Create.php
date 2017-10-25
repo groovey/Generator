@@ -21,7 +21,7 @@ class Create extends Command
     {
         $this
             ->setName('generate:create')
-            ->setDescription('Creates a predefined template.')
+            ->setDescription('Creates a predefined template')
             ->addArgument(
                 'arg',
                 InputArgument::IS_ARRAY | InputArgument::REQUIRED,
